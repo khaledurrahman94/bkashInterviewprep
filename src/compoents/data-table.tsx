@@ -1,4 +1,4 @@
-import React, { type ReactNode } from "react";
+import React, { type ReactNode, type MouseEventHandler } from "react";
 
 export interface Column<T> {
   key: keyof T;
@@ -6,19 +6,27 @@ export interface Column<T> {
   render?: (row: T) => ReactNode;
 }
 
-function DataTable<T>({ columns, data }: { columns: Column<T>[]; data: T[] }) {
+function DataTable<T>({
+  columns,
+  data,
+  onSort,
+}: {
+  columns: Column<T>[];
+  data: T[];
+  onSort: MouseEventHandler<HTMLElement>;
+}) {
   return (
     <div>
       <table>
         <thead>
-          <tr>
+          <tr onClick={onSort}>
             {columns.map((col) => (
-              <th key={col?.key?.toString()}>{col.label}</th>
+              <th data-id={col.key} key={col?.key?.toString()}>{col.label}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {data.map((row, index) => (
+          {data?.map((row, index) => (
             <tr key={index}>
               {columns.map((col) => (
                 <td key={col?.key?.toString()}>

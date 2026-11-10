@@ -1,0 +1,51 @@
+.container {
+  height: 500px;
+  width: 800px;
+  border: 1px solid black;
+  display: flex;
+  /*  */
+  /* align-items: flex-start; */
+  /* justify-content: end; */
+  /* justify-content: flex-start; */
+  /* align-content: space-evenly; */
+}
+
+.container-1 {
+  display: flex;
+  width: 70%;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.container-2 {
+  display: flex;
+  width: 30%;
+}
+
+.one {
+  background: yellow;
+}
+
+.three {
+  background: green;
+}
+.two,
+.four {
+  background: red;
+}
+
+.one {
+  /* height: fit-content; */
+  /* width: 200px; */
+  flex-basis: 100%;
+}
+
+.three,
+.two {
+  flex-basis: 50%;
+}
+
+.four {
+  background: purple;
+  flex-basis: 100%;
+}

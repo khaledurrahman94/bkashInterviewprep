@@ -1,0 +1,137 @@
+.cs-wrapper {
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 250px;
+  cursor: pointer;
+  position: relative;
+}
+
+.cs-trigger {
+  display: none;
+  width: 0px;
+  height: 0px;
+  pointer-events: none;
+}
+
+.cs-trigger-label {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+
+.cs-options {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.18s,
+    transform 0.19s;
+}
+
+.cs-option-trigger {
+  display: none;
+  width: 0px;
+  height: 0px;
+  pointer-events: none;
+}
+
+.cs-trigger:checked ~ .cs-options {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.cs-option {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.cs-option:hover > label,
+.cs-option:hover > span {
+  background: rgb(197, 196, 196);
+}
+
+.cs-option-trigger-label {
+  flex: 1 1 0%;
+  display: flex;
+  cursor: pointer;
+}
+
+.cs-option-trigger ~ span {
+  display: none;
+}
+
+.cs-option-trigger:checked ~ span {
+  display: block;
+}
+
+.cs-option:has(> input:checked) {
+  background: rgb(197, 196, 196);
+}
+
+/* accordion */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.header-trigger {
+  display: none;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.header-trigger-label {
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px 5px;
+}
+
+.content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    max-height 0.18s ease-in,
+    transform 0.18s ease-in;
+  pointer-events: none;
+  padding: 0px;
+  border: 1px solid black;
+  margin-bottom: 0px;
+  border-radius: 10px;
+}
+
+.header:has(.header-trigger:checked) {
+  background: var(--accent);
+  color: white;
+}
+
+.header:has(.header-trigger:checked) + .content {
+  max-height: 1000px;
+  opacity: 1;
+  transform: translateY(0);
+  padding: 10px;
+  margin-bottom: 10px;
+  /* pointer-events: auto; */
+}
+
+.header-trigger:checked + .header-trigger-label span:last-child {
+    transform: rotate(180deg);
+}
